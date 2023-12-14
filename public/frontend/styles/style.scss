@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+.btn-danger {
+    background-color: #e80808;
+    border-radius: 24px;
+    font-weight: 600;
+  }
+  .btn-danger .btn-icon {
+    max-height: 24px;
+  }
+  
+  gmp-map {
+    height: 100%;
+  }
+
+.btn-primary{
+    background-color: #0861E8;
+    border-radius: 24px;
+    font-weight: 600;
+    .btn-icon{
+        max-height: 24px;
+    }
+}
+
+.table-title{
+    font-weight: 700;
+}
+
+.table-title-header{
+    border-radius: 12px 12px 0px 0px;
+    background: #D9D9D9;
+}
+
+.table-title-base{
+    background: #F7F7F7;
+}
+
+
+h1{
+    margin-left: -3px;
+}
+
+h5{
+    font-weight: 700;
+}
+
+.btn-outline-primary{
+    border-color: #0861E8;
+    border-width: 2px;
+    border-radius: 24px;
+    font-weight: 600;
+    .btn-icon{
+        max-height: 24px;
+    }
+    &:hover{
+        background-color: #f5f6f8;
+        color: #0861E8;
+    }
+}
+
+.tertiary-link{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.table{   
+    th{
+        background-color: #D9D9D9 ;
+    }
+    td{
+        background-color: #F7F7F7;
+    }
+}
+
+label{
+    font-weight: 600;
+}
+
+h3{
+    font-weight: 700;
+}
+
+h6{
+    font-weight: 600;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-animation-enter-active, .form-animation-leave-active {
+    transition: opacity 0.5s;
+  }
+  .form-animation-enter, .form-animation-leave-to {
+    opacity: 0;
+  }
+
+.action{
+    font-weight: 600;
+}
+
+.nav-item{
+    .nav-link{
+        color: #0F0F0F;
+        font-size: 15px;
+        font-weight: 600;
+        &:hover{
+            color: #7c7c7c;
+        }
+    }
+}
+
+.container-nav{
+    margin-left: 7rem;
+}
+
+
+.nav-tabs{
+    opacity: 0.4;
+}
+
+.location-details{
+    color: #801414;
+}
+
+.change-link{
+    color: #801414;
+    font-weight: 700;
+}
+
+.value-text{
+    font-weight: 700;
+    color: #176C2A;
+span{
+    font-weight: 300;
+}
+
+}
+
+.tabs-active{
+    border-bottom: 2px solid #000;
+}
+
+.navbar
+{
+    .navbar-brand{
+        img{
+            max-height: 60px;
+        }
+    }
+}
+
+.card{
+    .card-body{
+        border-radius: 12px;
+        background: #F5F5F5;
+        &:hover{
+            animation: 0.5s;
+            background: #e7e7e7;
+        }
+        .card-title{
+            font-weight: 600;
+        }
+        .card-text{
+            font-weight: 400;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+    }
+
+    .location-wrapper{
+        img{
+            max-height: 28px;
+        }
+    }
+    
+}
+
+.timeline{
+    border-radius: 10px;
+    background-color: #ffd0d0;
+    .card-text{
+        margin: 0;
+    }
+}
+
+.project-details{
+    p{
+        color: #801414;
+    }
+    h5{
+        font-weight: 700;
+        margin-top: -10px;
+    }
+}
+
