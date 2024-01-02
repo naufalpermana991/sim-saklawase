@@ -9,6 +9,22 @@
   max-height: 24px;
 }
 
+.btn-outline-success {
+  background-color: #ffffff;
+  border: #007e15 solid 2px;
+  border-radius: 24px;
+  color: #007e15;
+  font-weight: 600;
+  &:hover{
+    background-color: #ebebeb;
+    color: #007e15;
+  }
+}
+
+.btn-outline-success .btn-icon {
+  max-height: 24px;
+}
+
 gmp-map {
   height: 100%;
 }

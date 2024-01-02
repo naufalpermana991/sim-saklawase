@@ -34,7 +34,7 @@
                                     <div class="col align-self-center">
                                         <p class="card-text">Project Name</p>
                                         <h6 class="mt-0">{{ $projects->project_name }}</h6>
-                                        <a href="{{ route('projects.show', $projects->id) }}" class="stretched-link"></a>
+                                        <a href="{{ route('projects.show', $projects->slug) }}" class="stretched-link"></a>
                                     </div>
                                 </div>
                             </div>

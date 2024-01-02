@@ -7,86 +7,95 @@ use App\Models\Projects;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\DB;
 
 class PlanningController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Projects $project)
     {
-        //get posts
-        $project = Planning::with('project')->orderBy('id')->get();
+        // Find the project with the specified ID
+        $project = Projects::find(1);
 
-        //render view with Plannings
-        return view('pages.planning.index', compact('project'));
+        // Get all planning tasks related to the project
+        $planning = Planning::all();
+
+        return view('pages.planning.index', compact('project', 'planning'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
+        // Retrieve projects for dropdown
+        // $projects = Projects::all();
+
         return view('pages.planning.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'task_name' => 'required',
-            'sub_task' => 'nullable',
-            'date_started' => 'required',
-            'date_finished' => 'required',
+            'volume' => 'required',
+            'unit' => 'required',
+            'date_started' => 'required|date',
+            'date_finished' => 'required|date',
             'mop' => 'required',
-            'percentage' => 'required'
+            'percentage' => 'required',
+            'sub_task' => $request->input('userChoice') == 'yes' ? 'required' : ''
         ]);
 
         $input = $request->all();
 
         Planning::create($input);
 
-        return redirect()->route('planning.index')->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('planning.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    public function show($id)
+    public function show()
     {
+        // Find the project with the specified ID
+        $project = Projects::find(1);
+
+        // Get all planning tasks related to the project
+        $planning = Planning::all();
+
+        return view('pages.planning.index', compact('project', 'planning'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id): View
     {
+        //get planning by ID
         $planning = Planning::findOrFail($id);
+        $sub_task = $planning->sub_task;
+
+        //render view with planning
         return view('pages.planning.edit', compact('planning'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id): RedirectResponse
     {
-        $this->validate($request, [
+        $request->validate([
             'task_name' => 'required',
-            'sub_task' => 'nullable',
-            'date_started' => 'required',
-            'date_finished' => 'required',
+            'volume' => 'required',
+            'unit' => 'required',
+            'date_started' => 'required|date',
+            'date_finished' => 'required|date',
             'mop' => 'required',
-            'percentage' => 'required'
+            'percentage' => 'required',
+            'sub_task' => $request->input('userChoice') == 'yes' ? 'required' : '',
         ]);
 
+        // unset($input['sub_task']);
+
+        //get post by ID
         $planning = Planning::findOrFail($id);
+
         $planning->update([
             'task_name' => $request->task_name,
+            'volume' => $request->volume,
+            'unit' => $request->unit,
             'sub_task' => $request->sub_task,
             'date_started' => $request->date_started,
             'date_finished' => $request->date_finished,
@@ -94,17 +103,14 @@ class PlanningController extends Controller
             'percentage' => $request->percentage
         ]);
 
-        return redirect()->route('planning.index')->with(['success' => 'Data Berhasil Diperbarui!']);
+        return redirect()->route('planning.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id): RedirectResponse
+    public function destroy(Projects $project, int $id): RedirectResponse
     {
         $planning = Planning::findOrFail($id);
         $planning->delete();
 
-        return redirect()->route('planning.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('planning.index', ['initial_project' => $project])->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

@@ -3,6 +3,9 @@
     <ul class="nav">
         @include('includes.nav-tabs.project-information')
         @include('includes.nav-tabs.planning')
+        @include('includes.nav-tabs.mop')
+        @include('includes.nav-tabs.actual')
+        @include('includes.nav-tabs.cost')
 
 
         {{-- <li class="nav-item me-5">

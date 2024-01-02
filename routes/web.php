@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DetailPlanningController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\NavTabsProjectsController;
 use App\Http\Controllers\NavTabsPlanningController;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +10,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\PlanningDetailsController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\MopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +24,8 @@ use App\Http\Controllers\MapController;
 */
 
 Route::get('/', [ProjectsController::class, 'index']);
-
-
+Route::get('/detailplanning', [DetailPlanningController::class, 'index'])->name('detailplanning.index');
+Route::get('/export/man-power-planning/{slug}', [ExportController::class, 'exportManPowerPlanning'])->name('export.man-power-planning');
 Route::resource('/projects', ProjectsController::class);
 Route::resource('/planning', PlanningController::class);
-Route::resource('/planning-details', PlanningDetailsController::class);
+Route::resource('/mop', MopController::class);

@@ -9,10 +9,5 @@ class Planning extends Model
 {
     use HasFactory;
     protected $fillable =
-    ['task_name', 'sub_task', 'date_started', 'date_finished', 'mop', 'percentage'];
-
-    public function project()
-    {
-        return $this->belongsTo(Projects::class);
-    }
+    ['task_name', 'sub_task', 'volume', 'unit', 'date_started', 'date_finished', 'mop', 'percentage'];
 }

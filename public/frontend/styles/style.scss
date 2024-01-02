@@ -7,6 +7,16 @@
   .btn-danger .btn-icon {
     max-height: 24px;
   }
+
+  .btn-outline-success {
+    background-color: #ffffff;
+    border: #007e15 solid 2px;
+    border-radius: 24px;
+    font-weight: 600;
+  }
+  .btn-success .btn-icon {
+    max-height: 24px;
+  }
   
   gmp-map {
     height: 100%;

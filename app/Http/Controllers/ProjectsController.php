@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projects;
+use App\Traits\showPlanning;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use GoogleMaps\ServiceProvider\GoogleMapsServiceProvider;
-use GoogleMaps\GoogleMaps;
+use Illuminate\Support\Str;
 
 class ProjectsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -47,6 +49,8 @@ class ProjectsController extends Controller
 
         $input = $request->all();
 
+        $input['slug'] = Str::slug($request->initial_project);
+
         Projects::create($input);
 
         return redirect()->route('projects.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -55,9 +59,15 @@ class ProjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($slug)
     {
-        $project = Projects::find($id);
+
+        $project = Projects::where('slug', $slug)->first();
+
+        // Check if the project is not found
+        if (!$project) {
+            abort(404); // Or handle it in a way that fits your application
+        }
 
         return view('pages.projects.detail', compact('project'));
     }
@@ -81,8 +91,9 @@ class ProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Projects $projects)
+    public function destroy($id)
     {
-        //
+        // ...
+        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
 }

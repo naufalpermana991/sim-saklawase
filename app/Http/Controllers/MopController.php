@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlanningDetail;
+use App\Models\ManOfPower;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 
-class PlanningDetailsController extends Controller
+class MopController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-        $project = Projects::latest()->paginate(5);
-
-        //render view with Plannings
-        return view('pages.planning-details.index', compact('project'));
+        //
     }
 
     /**
@@ -25,7 +21,7 @@ class PlanningDetailsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.man-of-power.create');
     }
 
     /**
@@ -39,15 +35,18 @@ class PlanningDetailsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PlanningDetail $planningDetail)
+    public function show($projectId)
     {
-        //
+
+        $project = Projects::find($projectId);
+
+        return view('pages.man-of-power.index', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PlanningDetail $planningDetail)
+    public function edit(ManOfPower $manOfPower)
     {
         //
     }
@@ -55,7 +54,7 @@ class PlanningDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PlanningDetail $planningDetail)
+    public function update(Request $request, ManOfPower $manOfPower)
     {
         //
     }
@@ -63,7 +62,7 @@ class PlanningDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PlanningDetail $planningDetail)
+    public function destroy(ManOfPower $manOfPower)
     {
         //
     }

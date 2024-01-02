@@ -33,7 +33,7 @@
             <div class="mt-5">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <form>
+                        <form action="{{ route('planning.update', $planning->id) }}">
                             <!-- Main Task Input -->
                             <div class="mb-3">
                                 <label for="task_name" class="form-label">Main Task</label>
@@ -83,6 +83,30 @@
                                 <!--end-->
                             </div>
                             <!--end-->
+
+                            <!--volume-->
+                            <div class="mt-4">
+                                <div class="col">
+                                    <label for="volume" class="form-label">Volume</label>
+                                    <input type="text" class="form-control" name="volume" placeholder="Enter Volume"
+                                        value="{{ old('volume', $planning->volume) }}" />
+                                </div>
+                            </div>
+
+                            <!--unit-->
+                            <div class="mt-4">
+                                <div class="col">
+                                    <label for="unit">Unit</label>
+                                    <select name="unit" id="unit" v-model="unit">
+                                        <option value="m2">m2</option>
+                                        <option value="m1">m1</option>
+                                        <option value="kg">Kg</option>
+                                        <option value="lbr">Lbr</option>
+                                        <option value="pcs">Pcs</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--date-unit-->
 
                             <!-- Date Group Input -->
                             <div class="mt-4">
