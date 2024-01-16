@@ -75,25 +75,54 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Projects $projects)
+    public function edit(string $id): View
     {
-        //
+        //get planning by ID
+        $project = Projects::findOrFail($id);
+
+        //render view with planning
+        return view('pages.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Projects $projects)
+    public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'project_name' => 'required',
+            'cost_center' => 'required',
+            'wo_number' => 'required',
+            'location' => 'required',
+            'project_value' => 'required',
+            'initial_project' => 'required'
+        ]);
+
+        // unset($input['sub_task']);
+
+        //get post by ID
+        $projects = Projects::findOrFail($id);
+
+        $projects->update([
+            'project_name' => $request->project_name,
+            'cost_center' => $request->cost_center,
+            'wo_number' => $request->wo_number,
+            'location' => $request->location,
+            'project_value' => $request->project_value,
+            'initial_project' => $request->initial_project,
+        ]);
+
+        return redirect()->route('projects.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Projects $project, int $id): RedirectResponse
     {
-        // ...
-        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
+        $project = Projects::findOrFail($id);
+        $project->delete();
+
+        return redirect()->route('projects.index', ['initial_project' => $project])->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

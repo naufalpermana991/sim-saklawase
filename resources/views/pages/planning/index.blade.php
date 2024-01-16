@@ -53,8 +53,8 @@
                         <td class="p-3 align-middle" scope="row">{{ $data->task_name }}</td>
                         <td class="p-3 text-center align-middle" scope="row">{{ $data->volume }}</td>
                         <td class="p-3 text-center align-middle" scope="row">{{ $data->unit }}</td>
-                        <td class="text-center p-3 align-middle">{{ $data->date_started }}</td>
-                        <td class="text-center p-3 align-middle">{{ $data->date_finished }}</td>
+                        <td class="text-center p-3 align-middle">{{ $data->start_date }}</td>
+                        <td class="text-center p-3 align-middle">{{ $data->end_date }}</td>
                         <td class="text-center p-3 align-middle">
                             <img src="{{ asset('frontend/images/users.png') }}" alt="" class="me-3"
                                 style="max-height: 24px" />{{ $data->mop }}

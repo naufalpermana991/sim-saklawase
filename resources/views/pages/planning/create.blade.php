@@ -100,13 +100,13 @@
                         <div class="mt-4">
                             <div class="row">
                                 <div class="col">
-                                    <label for="date_started" class="form-label">Date Started</label>
-                                    <input type="date" class="form-control" name="date_started"
+                                    <label for="start_date" class="form-label">Date Started</label>
+                                    <input type="date" class="form-control" name="start_date"
                                         placeholder="Enter Date Started" />
                                 </div>
                                 <div class="col">
-                                    <label for="date_finished" class="form-label">Date Finished</label>
-                                    <input type="date" class="form-control" name="date_finished"
+                                    <label for="end_date" class="form-label">Date Finished</label>
+                                    <input type="date" class="form-control" name="end_date"
                                         placeholder="Enter Date Finished" />
                                 </div>
                             </div>

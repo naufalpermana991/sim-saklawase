@@ -39,8 +39,8 @@ class PlanningController extends Controller
             'task_name' => 'required',
             'volume' => 'required',
             'unit' => 'required',
-            'date_started' => 'required|date',
-            'date_finished' => 'required|date',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
             'mop' => 'required',
             'percentage' => 'required',
             'sub_task' => $request->input('userChoice') == 'yes' ? 'required' : ''
@@ -80,8 +80,8 @@ class PlanningController extends Controller
             'task_name' => 'required',
             'volume' => 'required',
             'unit' => 'required',
-            'date_started' => 'required|date',
-            'date_finished' => 'required|date',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
             'mop' => 'required',
             'percentage' => 'required',
             'sub_task' => $request->input('userChoice') == 'yes' ? 'required' : '',
@@ -97,8 +97,8 @@ class PlanningController extends Controller
             'volume' => $request->volume,
             'unit' => $request->unit,
             'sub_task' => $request->sub_task,
-            'date_started' => $request->date_started,
-            'date_finished' => $request->date_finished,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             'mop' => $request->mop,
             'percentage' => $request->percentage
         ]);
@@ -112,5 +112,24 @@ class PlanningController extends Controller
         $planning->delete();
 
         return redirect()->route('planning.index', ['initial_project' => $project])->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function get()
+    {
+        $planning = Planning::all();
+
+        $ganttData = [];
+        foreach ($planning as $task) {
+            $ganttData[] = [
+                'id' => $task->id,
+                'text' => $task->task_name,
+                'start_date' => $task->start_date,
+                'duration' => $task->end_date, // Adjust this field to match the one in your model
+            ];
+        }
+
+        return response()->json([
+            'data' => $ganttData,
+        ]);
     }
 }

@@ -9,5 +9,12 @@ class Planning extends Model
 {
     use HasFactory;
     protected $fillable =
-    ['task_name', 'sub_task', 'volume', 'unit', 'date_started', 'date_finished', 'mop', 'percentage'];
+    ['task_name', 'sub_task', 'volume', 'unit', 'start_date', 'end_date', 'mop', 'percentage'];
+
+    protected $appends = ["open"];
+
+    public function getOpenAttribute()
+    {
+        return true;
+    }
 }

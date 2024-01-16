@@ -1,0 +1,28 @@
+.gantt-chart-container {
+    background-color: #f7f7f7;
+    p {
+        font-weight: bold;
+    }
+
+    .date {
+        font-weight: 400;
+    }
+    img {
+        max-height: 20px;
+    }
+}
+
+.progress {
+    background-color: rgb(194, 0, 0);
+    
+}
+
+.progress-bar {
+    color: white;
+    background-color: #0861E8;
+}
+
+.rounded-pill-warning{
+    background-color: #FFE49F;
+    color:#A57700;
+}

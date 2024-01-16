@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('sub_task');
             $table->string('volume');
             $table->enum('unit', ['m2', 'm1', 'kg', 'lbr', 'pcs']);
-            $table->date('date_started');
-            $table->date('date_finished');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->integer('mop');
             $table->integer('percentage');
             $table->timestamps();

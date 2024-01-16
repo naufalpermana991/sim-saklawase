@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->string('slug')->unique()->after('initial_project');
+        Schema::create('man_of_powers', function (Blueprint $table) {
+            $table->id();
+            $table->string('worker_name1');
+            $table->string('worker_name2');
+            $table->string('worker_name3');
+            $table->string('worker_name4');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('slug');
-        });
+        Schema::dropIfExists('manofpower');
     }
 };

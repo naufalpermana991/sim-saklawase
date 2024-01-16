@@ -24,6 +24,7 @@ use App\Http\Controllers\MopController;
 */
 
 Route::get('/', [ProjectsController::class, 'index']);
+Route::get('/data', [PlanningController::class, 'get']);
 Route::get('/detailplanning', [DetailPlanningController::class, 'index'])->name('detailplanning.index');
 Route::get('/export/man-power-planning/{slug}', [ExportController::class, 'exportManPowerPlanning'])->name('export.man-power-planning');
 Route::resource('/projects', ProjectsController::class);

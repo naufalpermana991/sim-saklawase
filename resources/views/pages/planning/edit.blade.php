@@ -112,10 +112,10 @@
                             <div class="mt-4">
                                 <div class="row">
                                     <div class="col">
-                                        <label for="date_started" class="form-label">Date Started</label>
+                                        <label for="start_date" class="form-label">Date Started</label>
                                         <input type="date" class="form-control @error('title') is-invalid @enderror"
-                                            name="date_started" placeholder="Enter Date Started"
-                                            value="{{ old('date_started', $planning->date_started) }}" />
+                                            name="start_date" placeholder="Enter Date Started"
+                                            value="{{ old('start_date', $planning->start_date) }}" />
                                         @error('title')
                                             <div class="alert alert-danger mt-2">
                                                 {{ $message }}
@@ -123,10 +123,10 @@
                                         @enderror
                                     </div>
                                     <div class="col">
-                                        <label for="date_finished" class="form-label">Date Finished</label>
+                                        <label for="end_date" class="form-label">Date Finished</label>
                                         <input type="date" class="form-control @error('title') is-invalid @enderror"
-                                            name="date_finished" placeholder="Enter Date Finished"
-                                            value="{{ old('date_finished', $planning->date_finished) }}" />
+                                            name="end_date" placeholder="Enter Date Finished"
+                                            value="{{ old('end_date', $planning->end_date) }}" />
                                         @error('title')
                                             <div class="alert alert-danger mt-2">
                                                 {{ $message }}

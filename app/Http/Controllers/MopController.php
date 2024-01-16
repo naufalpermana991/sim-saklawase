@@ -13,7 +13,9 @@ class MopController extends Controller
      */
     public function index()
     {
-        //
+        $project = Projects::find(1);
+        $mop = ManOfPower::all();
+        return view('pages.man-of-power.index', compact('project', 'mop'));
     }
 
     /**
@@ -29,7 +31,16 @@ class MopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "worker_name1" => "required",
+            "worker_name2" => "required",
+            "worker_name3" => "required",
+            "worker_name4" => "required",
+        ]);
+
+        $input = $request->all();
+        ManOfPower::create($input);
+        return redirect()->route('mop.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -38,9 +49,10 @@ class MopController extends Controller
     public function show($projectId)
     {
 
-        $project = Projects::find($projectId);
+        $project = Projects::find(1);
+        $mop = ManOfPower::all();
 
-        return view('pages.man-of-power.index', compact('project'));
+        return view('pages.man-of-power.index', compact('project', 'mop'));
     }
 
     /**

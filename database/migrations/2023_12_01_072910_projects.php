@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('project_value');
             $table->string('initial_project');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
