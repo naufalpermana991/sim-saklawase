@@ -1,15 +1,11 @@
 <?php
 
+use App\Http\Controllers\ActualController;
 use App\Http\Controllers\DetailPlanningController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\NavTabsProjectsController;
-use App\Http\Controllers\NavTabsPlanningController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\PlanningController;
-use App\Http\Controllers\PlanningDetailsController;
-use App\Http\Controllers\MapController;
 use App\Http\Controllers\MopController;
 
 /*
@@ -29,4 +25,8 @@ Route::get('/detailplanning', [DetailPlanningController::class, 'index'])->name(
 Route::get('/export/man-power-planning/{slug}', [ExportController::class, 'exportManPowerPlanning'])->name('export.man-power-planning');
 Route::resource('/projects', ProjectsController::class);
 Route::resource('/planning', PlanningController::class);
+Route::resource('/actual', ActualController::class);
 Route::resource('/mop', MopController::class);
+Route::get('/getEmployeeDetails/{empid}', [MopController::class, 'getEmployeeDetails'])->name('getEmployeeDetails');
+Route::post('api/fetch-data', [MopController::class, 'fetchPlanningTask']);
+Route::post('api/fetch-data', [MopController::class, 'fetchPlanningDate']);

@@ -13,12 +13,14 @@
 
 <body>
     <!--navbar-->
-    @include('includes.navbar')
-    <!--end-navbar-->
-    <!--section1-->
-    @yield('content')
-    <!--end-section1-->
-    @include('includes.script')
+    <div>
+        @include('includes.navbar')
+        <!--end-navbar-->
+        <!--section1-->
+        @yield('content')
+        <!--end-section1-->
+        @include('includes.script')
+    </div>
 </body>
 
 </html>

@@ -108,9 +108,17 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
     <script type="text/javascript">
         gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+
+        gantt.config.task_duration_func = function(start_date, task_name) {
+            var startDate = moment(start_date);
+            var endDate = moment(end_date);
+            var duration = endDate.diff(startDate, 'days'); // Adjust this line to match the duration format you need
+            return duration;
+        };
 
         gantt.init("gantt_here");
 

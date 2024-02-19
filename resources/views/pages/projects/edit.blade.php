@@ -20,7 +20,7 @@
             @method('PUT')
             <div class="mt-5">
                 <div class="title-section-1 d-flex justify-content-between">
-                    <h3>Create Project</h3>
+                    <h3>Edit Project</h3>
                     <button type="submit" class="btn btn-primary py-2 px-4">
                         <img src="{{ asset('frontend/images/plus-circle 1.png') }}" alt=""
                             class="btn-icon me-3" />Save

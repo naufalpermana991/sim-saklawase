@@ -31,42 +31,37 @@
 
     <!--table-section-->
     <div class="container mt-5">
-        <table class="table">
+        <table class="table" id='empTable'>
             <thead>
                 <tr>
-                    <th class="align-middle p-4" scope="col">Task</th>
-                    <th class="text-center align-middle p-4" scope="col">
+                    <th class="align-middle p-3" scope="col">Task</th>
+                    <th class="text-center align-middle p-3" scope="col">
                         Date Started
                     </th>
-                    <th class="text-center align-middle p-4" scope="col">Status</th>
-                    <th class="text-center align-middle p-4" scope="col">
-                        Number of Person(s)
+                    <th class="text-center align-middle p-3" scope="col">
+                        Person(s)
                     </th>
-                    <th class="text-end align-middle p-4" scope="col">Action</th>
+                    <th class="text-end align-middle p-3" scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $jumlahKolom = count($mop[0]->toArray());
-                @endphp
                 @forelse($mop as $data)
                     <tr>
-                        <td class="p-4 align-middle" scope="row">Persiapan</td>
-                        <td class="text-center align-middle p-4">01/11/2023</td>
-                        <td class="text-center align-middle p-4">
-                            <span class="badge rounded-pill rounded-pill-warning px-3 py-2">Pending</span>
-                        </td>
-                        <td class="text-center align-middle p-4">
+                        <td class="p-3 align-middle" scope="row">{{ $data->task_name }}</td>
+                        <td class="text-center align-middle p-3">{{ $data->start_date }}</td>
+                        <td class="text-center align-middle p-3">
                             <img src="{{ asset('frontend/images/users.png') }}" alt="" class="me-3"
-                                style="max-height: 24px" />{{ $jumlahKolom }}
-                            <a href="#" class="action text-decoration-none ms-2">View Details</a>
+                                style="max-height: 24px" />
+                            <a href="#" class="action align-middle text-decoration-none viewdetails ms-2"
+                                data-id="{{ $data->id }}">View Details</a>
                         </td>
-                        <td class="text-end align-middle p-4">
+                        <td class="text-end
+                                p-3 align-middle">
                             <div class="action d-flex justify-content-end">
-                                <form onsubmit="return confirm('Are you sure to delete the data?');" action="#"
-                                    method="POST">
+                                <form onsubmit="return confirm('Are you sure to delete the data?');"
+                                    action="{{ route('mop.destroy', $data->id) }}" method="POST">
                                     <div class="action d-flex justify-content-end">
-                                        <a class="btn btn-primary" href="#">Edit</a>
+                                        <a class="btn btn-primary" href="{{ route('mop.edit', $data->id) }}">Edit</a>
                                         <div class="me-3"></div>
                                         @csrf
                                         @method('DELETE')
@@ -79,7 +74,6 @@
                 @empty
                     <td class="text-center p-3 block align-middle"></td>
                     <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
                     <td class="text-center p-3 block align-middle">Data Kosong</td>
                     <td class="text-center p-3 block align-middle"></td>
                     </tr>
@@ -89,3 +83,4 @@
     </div>
     <!--end-table-section-->
 @endsection
+@include('includes.modal')

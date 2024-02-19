@@ -4,3 +4,4 @@
 <link href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ URL::asset('frontend/styles/style.css') }}" />
 <link rel="stylesheet" href="{{ URL::asset('frontend/styles/gantt-chart-components.css') }}" />
+<link rel="stylesheet" href="{{ URL::asset('frontend/styles/actual=gantt-chart-components.css') }}" />

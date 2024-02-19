@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Planning;
 use App\Models\Projects;
+use DateTime;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -53,10 +54,10 @@ class PlanningController extends Controller
         return redirect()->route('planning.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-    public function show()
+    public function show($slug)
     {
         // Find the project with the specified ID
-        $project = Projects::find(1);
+        $project = Projects::where('slug', $slug)->first();
 
         // Get all planning tasks related to the project
         $planning = Planning::all();
@@ -120,11 +121,15 @@ class PlanningController extends Controller
 
         $ganttData = [];
         foreach ($planning as $task) {
+            $startDate = new DateTime($task->start_date);
+            $endDate = new DateTime($task->end_date);
+            $duration = $endDate->diff($startDate)->days; // Adjust this line to match the duration format you need
+
             $ganttData[] = [
                 'id' => $task->id,
                 'text' => $task->task_name,
                 'start_date' => $task->start_date,
-                'duration' => $task->end_date, // Adjust this field to match the one in your model
+                'duration' => $duration,
             ];
         }
 

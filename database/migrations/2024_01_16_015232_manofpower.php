@@ -13,11 +13,20 @@ return new class extends Migration
     {
         Schema::create('man_of_powers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('planning_id');
+            $table->string('task_name');
+            $table->date('start_date');
             $table->string('worker_name1');
+            $table->string('worker_responsibility1');
             $table->string('worker_name2');
+            $table->string('worker_responsibility2');
             $table->string('worker_name3');
+            $table->string('worker_responsibility3');
             $table->string('worker_name4');
+            $table->string('worker_responsibility4');
             $table->timestamps();
+
+            $table->foreign('planning_id')->references('id')->on('plannings')->onDelete('cascade');
         });
     }
 
