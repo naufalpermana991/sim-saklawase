@@ -9,6 +9,11 @@ class Projects extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'project_name', 'cost_center', 'wo_number', 'location', 'project_value', 'initial_project', 'slug'
+        'project_name', 'cost_center', 'wo_number', 'location', 'project_value', 'initial_project', 'slug', 'customer'
     ];
+
+    public function plannings()
+    {
+        return $this->hasMany(Planning::class);
+    }
 }

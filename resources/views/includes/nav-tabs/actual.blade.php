@@ -1,7 +1,7 @@
 <li class="nav-item me-5">
     @php
-        $projectLink = url('/actual/' . $project->slug);
-        $isActive = request()->is('actual/' . $project->slug);
+        $projectLink = url('/actuals/' . $project->slug);
+        $isActive = request()->is('actuals/' . $project->slug);
     @endphp
 
     @if ($isActive)

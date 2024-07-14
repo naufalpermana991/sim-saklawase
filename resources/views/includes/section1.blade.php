@@ -1,7 +1,7 @@
 <!--section1-->
 <div class="container mb-3">
     <div class="mt-5">
-        <div class="title-section-1 d-flex justify-content-between">
+        <div class="title-section-1 d-flex justify-content-between align-items-center">
             <h3>Project {{ $project->initial_project }}</h3>
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle px-4 py-2" type="button" data-bs-toggle="dropdown"

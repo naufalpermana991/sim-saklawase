@@ -8,6 +8,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use GoogleMaps\ServiceProvider\GoogleMapsServiceProvider;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class ProjectsController extends Controller
@@ -21,8 +24,14 @@ class ProjectsController extends Controller
         //get posts
         $project = Projects::latest()->paginate(5);
 
+        //get current URL
+        $currentUrl = URL::current();
+
+        //set planning tab as active if current URL matches planning tab URL
+        $planningTabActive = strpos($currentUrl, '/planning') !== false;
+
         //render view with Plannings
-        return view('pages.index', compact('project'));
+        return view('pages.index', compact('project', 'planningTabActive'));
     }
 
     /**
@@ -36,7 +45,7 @@ class ProjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'project_name' => 'required',
@@ -44,16 +53,33 @@ class ProjectsController extends Controller
             'wo_number' => 'required',
             'location' => 'required',
             'project_value' => 'required',
-            'initial_project' => 'required'
+            'initial_project' => 'required',
+            'customer' => 'required'
         ]);
 
         $input = $request->all();
 
-        $input['slug'] = Str::slug($request->initial_project);
+        // Generate a unique slug for the project
+        $slug = Str::slug($input['project_name']);
+        $counter = 1;
+        while (Projects::where('slug', $slug)->exists()) {
+            $slug = Str::slug($input['project_name']) . '-' . $counter;
+            $counter++;
+        }
 
-        Projects::create($input);
+        // Create a new project
+        $project = new Projects();
+        $project->project_name = $input['project_name'];
+        $project->cost_center = $input['cost_center'];
+        $project->wo_number = $input['wo_number'];
+        $project->location = $input['location'];
+        $project->project_value = $input['project_value'];
+        $project->initial_project = $input['initial_project'];
+        $project->customer = $input['customer'];
+        $project->slug = $slug;
+        $project->save();
 
-        return redirect()->route('projects.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('projects.index')->with(['success' => 'Data Berhasil Disimpan!', 'projectSlug' => $project->slug]);
     }
 
     /**
@@ -62,7 +88,7 @@ class ProjectsController extends Controller
     public function show($slug)
     {
 
-        $project = Projects::where('slug', $slug)->first();
+        $project = Projects::where('slug', $slug)->firstOrFail();
 
         // Check if the project is not found
         if (!$project) {
@@ -95,7 +121,8 @@ class ProjectsController extends Controller
             'wo_number' => 'required',
             'location' => 'required',
             'project_value' => 'required',
-            'initial_project' => 'required'
+            'initial_project' => 'required',
+            'customer' => 'required'
         ]);
 
         // unset($input['sub_task']);
@@ -124,5 +151,14 @@ class ProjectsController extends Controller
         $project->delete();
 
         return redirect()->route('projects.index', ['initial_project' => $project])->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function deleteMultiple(Request $request)
+    {
+        $ids = $request->input('ids');
+        if ($ids) {
+            Projects::whereIn('id', $ids)->delete();
+        }
+        return redirect()->route('projects.index');
     }
 }

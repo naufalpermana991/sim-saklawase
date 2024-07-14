@@ -42,6 +42,7 @@
                     <th class="text-center p-4" scope="col">Unit</th>
                     <th class="text-center p-4" scope="col">Date Started</th>
                     <th class="text-center p-4" scope="col">Date Finished</th>
+                    <th class="text-center p-4" scope="col">Duration</th>
                     <th class="text-center p-4" scope="col">Man Power Planning</th>
                     <th class="text-center p-4" scope="col">Percentage (%)</th>
                     <th class="text-end p-4" scope="col">Action</th>
@@ -55,6 +56,7 @@
                         <td class="p-3 text-center align-middle" scope="row">{{ $data->unit }}</td>
                         <td class="text-center p-3 align-middle">{{ $data->start_date }}</td>
                         <td class="text-center p-3 align-middle">{{ $data->end_date }}</td>
+                        <td class="text-center p-3 align-middle">{{ $data->duration }}</td>
                         <td class="text-center p-3 align-middle">
                             <img src="{{ asset('frontend/images/users.png') }}" alt="" class="me-3"
                                 style="max-height: 24px" />{{ $data->mop }}
@@ -62,28 +64,22 @@
                         <td class="text-center p-3 align-middle">{{ $data->percentage }}%</td>
                         <td class="text-end p-3 align-middle">
                             <form onsubmit="return confirm('Are you sure to delete the data?');"
-                                action="{{ route('planning.destroy', $data->id) }}" method="POST">
+                                action="{{ route('planning.destroy', ['project' => $project->slug, 'planning' => $data->id]) }}"
+                                method="POST">
                                 <div class="action d-flex justify-content-end">
-                                    <a class="btn btn-primary" href="{{ route('planning.edit', $data->id) }}">Edit</a>
+                                    <a class="btn btn-primary"
+                                        href="{{ route('planning.edit', ['project' => $project->slug, 'planning' => $data->id]) }}">Edit</a>
                                     <div class="me-3"></div>
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</a>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </div>
                             </form>
-                        </td>
 
+                        </td>
                     </tr>
                 @empty
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle">Data Kosong</td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    </tr>
+                    <td colspan="9"class="text-center p-3 block align-middle">Data Kosong</td>
                 @endforelse
             </tbody>
         </table>

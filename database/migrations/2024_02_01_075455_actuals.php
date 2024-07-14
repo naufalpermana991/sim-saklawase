@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('actuals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('planning_id');
+            $table->unsignedBigInteger('project_id');
+            $table->integer('days');
             $table->string('task_name');
             $table->date('start_date');
             $table->string('activities');
             $table->string('results');
+            $table->string('image')->nullable();
             $table->timestamps();
+            $table->foreign('planning_id')->references('id')->on('plannings')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

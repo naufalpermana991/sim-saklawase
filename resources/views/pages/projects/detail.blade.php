@@ -52,6 +52,12 @@
                     <h5>{{ $project->project_value }}</h5>
                 </div>
             </div>
+            <div class="col-auto">
+                <div class="project-details mt-4">
+                    <p>Customer Name</p>
+                    <h5>{{ $project->customer }}</h5>
+                </div>
+            </div>
         </div>
     </div>
     <!--endsection2-->

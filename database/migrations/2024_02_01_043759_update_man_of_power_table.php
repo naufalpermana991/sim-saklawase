@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('worker_responsibility3')->nullable()->change();
             $table->string('worker_name4')->nullable()->change();
             $table->string('worker_responsibility4')->nullable()->change();
+            $table->string('additional_worker')->nullable()->change();
+            $table->string('reason')->nullable()->change();
         });
     }
 
@@ -37,6 +39,8 @@ return new class extends Migration
             $table->string('worker_responsibility3')->nullable(false)->change();
             $table->string('worker_name4')->nullable(false)->change();
             $table->string('worker_responsibility4')->nullable(false)->change();
+            $table->string('additional_worker')->nullable(false)->change();
+            $table->string('reason')->nullable(false)->change();
         });
     }
 };

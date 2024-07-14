@@ -1,205 +1,219 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 .btn-danger {
     background-color: #e80808;
     border-radius: 24px;
     font-weight: 600;
-  }
-  .btn-danger .btn-icon {
+}
+.btn-danger .btn-icon {
     max-height: 24px;
-  }
+}
 
-  .btn-outline-success {
+.btn-outline-success {
     background-color: #ffffff;
     border: #007e15 solid 2px;
     border-radius: 24px;
     font-weight: 600;
-  }
-  .btn-success .btn-icon {
+}
+.btn-success .btn-icon {
     max-height: 24px;
-  }
-  
-  gmp-map {
-    height: 100%;
-  }
+}
 
-.btn-primary{
-    background-color: #0861E8;
+gmp-map {
+    height: 100%;
+}
+
+.btn-primary {
+    background-color: #0861e8;
     border-radius: 24px;
     font-weight: 600;
-    .btn-icon{
+    .btn-icon {
         max-height: 24px;
     }
 }
 
-.table-title{
+.btn-outline-primary-delete {
+    background-color: #ffffff;
+    border-radius: 24px;
+    font-weight: 600;
+    color: #c30010;
+    border: solid 2px #c30010;
+    .btn-icon {
+        max-height: 24px;
+    }
+    &:hover {
+        background-color: #f5f6f8;
+        border-radius: 24px;
+        font-weight: 600;
+        color: #c30010;
+        border: solid 2px #c30010;
+    }
+}
+
+.table-title {
     font-weight: 700;
 }
 
-.table-title-header{
+.table-title-header {
     border-radius: 12px 12px 0px 0px;
-    background: #D9D9D9;
+    background: #d9d9d9;
 }
 
-.table-title-base{
-    background: #F7F7F7;
+.table-title-base {
+    background: #f7f7f7;
 }
 
-
-h1{
+h1 {
     margin-left: -3px;
 }
 
-h5{
+h5 {
     font-weight: 700;
 }
 
-.btn-outline-primary{
-    border-color: #0861E8;
+.btn-outline-primary {
+    border-color: #0861e8;
     border-width: 2px;
     border-radius: 24px;
     font-weight: 600;
-    .btn-icon{
+    .btn-icon {
         max-height: 24px;
     }
-    &:hover{
+    &:hover {
         background-color: #f5f6f8;
-        color: #0861E8;
+        color: #0861e8;
     }
 }
 
-.tertiary-link{
+.tertiary-link {
     font-weight: 600;
     text-decoration: none;
 }
 
-.table{   
-    th{
-        background-color: #D9D9D9 ;
+.table {
+    th {
+        background-color: #d9d9d9;
     }
-    td{
-        background-color: #F7F7F7;
+    td {
+        background-color: #f7f7f7;
     }
 }
 
-label{
+label {
     font-weight: 600;
 }
 
-h3{
+h3 {
     font-weight: 700;
 }
 
-h6{
+h6 {
     font-weight: 600;
 }
 
-body{
-    font-family: 'Open Sans', sans-serif;
+body {
+    font-family: "Open Sans", sans-serif;
 }
 
-.form-animation-enter-active, .form-animation-leave-active {
+.form-animation-enter-active,
+.form-animation-leave-active {
     transition: opacity 0.5s;
-  }
-  .form-animation-enter, .form-animation-leave-to {
+}
+.form-animation-enter,
+.form-animation-leave-to {
     opacity: 0;
-  }
+}
 
-.action{
+.action {
     font-weight: 600;
 }
 
-.nav-item{
-    .nav-link{
-        color: #0F0F0F;
+.nav-item {
+    .nav-link {
+        color: #0f0f0f;
         font-size: 15px;
         font-weight: 600;
-        &:hover{
+        &:hover {
             color: #7c7c7c;
         }
     }
 }
 
-.container-nav{
+.container-nav {
     margin-left: 7rem;
 }
 
-
-.nav-tabs{
+.nav-tabs {
     opacity: 0.4;
 }
 
-.location-details{
+.location-details {
     color: #801414;
 }
 
-.change-link{
+.change-link {
     color: #801414;
     font-weight: 700;
 }
 
-.value-text{
+.value-text {
     font-weight: 700;
-    color: #176C2A;
-span{
-    font-weight: 300;
+    color: #176c2a;
+    span {
+        font-weight: 300;
+    }
 }
 
-}
-
-.tabs-active{
+.tabs-active {
     border-bottom: 2px solid #000;
 }
 
-.navbar
-{
-    .navbar-brand{
-        img{
+.navbar {
+    .navbar-brand {
+        img {
             max-height: 60px;
         }
     }
 }
 
-.card{
-    .card-body{
+.card {
+    .card-body {
         border-radius: 12px;
-        background: #F5F5F5;
-        &:hover{
+        background: #f5f5f5;
+        &:hover {
             animation: 0.5s;
             background: #e7e7e7;
         }
-        .card-title{
+        .card-title {
             font-weight: 600;
         }
-        .card-text{
+        .card-text {
             font-weight: 400;
             font-size: 15px;
             margin-bottom: 5px;
         }
     }
 
-    .location-wrapper{
-        img{
+    .location-wrapper {
+        img {
             max-height: 28px;
         }
     }
-    
 }
 
-.timeline{
+.timeline {
     border-radius: 10px;
     background-color: #ffd0d0;
-    .card-text{
+    .card-text {
         margin: 0;
     }
 }
 
-.project-details{
-    p{
+.project-details {
+    p {
         color: #801414;
     }
-    h5{
+    h5 {
         font-weight: 700;
         margin-top: -10px;
     }
 }
-

@@ -4,6 +4,7 @@
     <!--section1-->
 
     @include('includes.section1')
+    @include('includes.script')
 
     <!--end-section1-->
 
@@ -72,11 +73,7 @@
                         </td>
                     </tr>
                 @empty
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    <td class="text-center p-3 block align-middle">Data Kosong</td>
-                    <td class="text-center p-3 block align-middle"></td>
-                    </tr>
+                    <td colspan="4"class="text-center p-3 block align-middle">Data Kosong</td>
                 @endforelse
             </tbody>
         </table>

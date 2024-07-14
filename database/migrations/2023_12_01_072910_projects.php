@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('project_name');
             $table->string('cost_center');
-            $table->integer('wo_number');
+            $table->string('wo_number');
             $table->string('location');
             $table->string('project_value');
-            $table->string('initial_project');
+            $table->string('initial_project')->nullable(false);
+            $table->string('customer');
             $table->string('slug')->unique();
             $table->timestamps();
         });

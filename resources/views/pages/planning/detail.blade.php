@@ -122,7 +122,7 @@
 
         gantt.init("gantt_here");
 
-        gantt.load("/data");
+        gantt.load("/api/data");
     </script>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ActualController;
+use App\Http\Controllers\ActualsController;
+use App\Http\Controllers\AdditionalMOPController;
 use App\Http\Controllers\DetailPlanningController;
 use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
@@ -21,12 +22,18 @@ use App\Http\Controllers\MopController;
 
 Route::get('/', [ProjectsController::class, 'index']);
 Route::get('/data', [PlanningController::class, 'get']);
+Route::get('/data', [PlanningController::class, 'getActual']);
+Route::get('/actual', [ActualsController::class, 'getActual']);
 Route::get('/detailplanning', [DetailPlanningController::class, 'index'])->name('detailplanning.index');
+Route::post('/add_mop', [AdditionalMOPController::class, 'store'])->name('add_mops.store');
 Route::get('/export/man-power-planning/{slug}', [ExportController::class, 'exportManPowerPlanning'])->name('export.man-power-planning');
-Route::resource('/projects', ProjectsController::class);
+Route::resource('projects', ProjectsController::class);
 Route::resource('/planning', PlanningController::class);
-Route::resource('/actual', ActualController::class);
+Route::resource('/actuals', ActualsController::class);
 Route::resource('/mop', MopController::class);
+Route::post('/projects/delete', [ProjectsController::class, 'deleteMultiple'])->name('projects.deleteMultiple');
 Route::get('/getEmployeeDetails/{empid}', [MopController::class, 'getEmployeeDetails'])->name('getEmployeeDetails');
 Route::post('api/fetch-data', [MopController::class, 'fetchPlanningTask']);
+Route::post('api/fetch-data', [ActualsController::class, 'fetchPlanningTask']);
 Route::post('api/fetch-data', [MopController::class, 'fetchPlanningDate']);
+Route::post('api/fetch-data', [ActualsController::class, 'fetchPlanningDate']);

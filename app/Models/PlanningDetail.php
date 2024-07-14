@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PlanningDetail extends Model
 {
     use HasFactory;
+    public function project()
+    {
+        return $this->belongsTo(Projects::class);
+    }
 }

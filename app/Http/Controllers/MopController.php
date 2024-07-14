@@ -104,6 +104,8 @@ class MopController extends Controller
             "worker_responsibility2" => "nullable",
             "worker_responsibility3" => "nullable",
             "worker_responsibility4" => "nullable",
+            "additional_worker" => "nullable",
+            "reason" => $request->input('userChoice') == 'yes' ? 'required' : ''
         ]);
 
         $planning = Planning::where('start_date', $request->start_date)->first();
@@ -150,6 +152,7 @@ class MopController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
+            "project_id" => "required|exists:projects,id",
             "planning_id" => "required|exists:plannings,id",
             "start_date" => "required|date",
             "worker_name1" => "nullable",
@@ -160,13 +163,15 @@ class MopController extends Controller
             "worker_responsibility2" => "nullable",
             "worker_responsibility3" => "nullable",
             "worker_responsibility4" => "nullable",
+            "additional_worker" => "nullable",
+            "reason" => $request->input('userChoice') == 'yes' ? 'required' : 'nullable',
         ]);
-
         $planning = Planning::where('start_date', $request->start_date)->first();
         $taskName = $planning ? $planning->task_name : null;
 
         $manOfPower = ManOfPower::findOrFail($id);
         $manOfPower->update([
+            'project_id' => $request->project_id,
             'planning_id' => $request->planning_id,
             'start_date' => $request->start_date,
             'task_name' => $taskName,
@@ -177,7 +182,9 @@ class MopController extends Controller
             'worker_responsibility1' => $request->worker_responsibility1,
             'worker_responsibility2' => $request->worker_responsibility2,
             'worker_responsibility3' => $request->worker_responsibility3,
-            'worker_responsibility4' => $request->worker_responsibility4
+            'worker_responsibility4' => $request->worker_responsibility4,
+            'additional_worker' => $request->additional_worker,
+            'reason' => $request->reason
         ]);
 
         return redirect()->route('mop.index')->with(['success' => 'Data Berhasil Diubah!']);

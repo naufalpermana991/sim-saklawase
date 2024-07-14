@@ -12,6 +12,7 @@
 
 <body>
     @include('includes.navbar')
+    @include('includes.script')
 
     <!--section1-->
     <div class="container mb-3">
@@ -111,7 +112,7 @@
                             <!-- Date Group Input -->
                             <div class="mt-4">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-4">
                                         <label for="start_date" class="form-label">Date Started</label>
                                         <input type="date" class="form-control @error('title') is-invalid @enderror"
                                             name="start_date" placeholder="Enter Date Started"
@@ -122,7 +123,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="col">
+                                    <div class="col-4">
                                         <label for="end_date" class="form-label">Date Finished</label>
                                         <input type="date" class="form-control @error('title') is-invalid @enderror"
                                             name="end_date" placeholder="Enter Date Finished"
@@ -132,6 +133,12 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="duration" class="form-label">Duration</label>
+                                        <input type="number" class="form-control" name="duration"
+                                            placeholder="Enter Duration" id="edit_duration"
+                                            value="{{ old('duration', $planning->duration) }}" />
                                     </div>
                                 </div>
                             </div>
@@ -171,21 +178,7 @@
     </div>
     <!--end-section1-->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="scripts/script.js"></script>
 
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                userChoice: "no", // Default: No
-                subTaskValue: "",
-            },
-        });
-    </script>
 
 </body>
 
