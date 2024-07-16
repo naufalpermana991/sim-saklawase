@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="wnameth=device-wnameth, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Man of Power Task</title>
     @stack('prepend-style')
     @include('includes.styles')
@@ -32,6 +32,17 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="project_id" class="form-label">Project</label>
+                                    <select class="form-control" name="project_id">
+                                        @foreach ($projects as $project)
+                                            <option value="{{ $project->id }}">{{ $project->project_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col">
                                 <div class="form-group">
                                     <label for="planning_id" class="form-label">Task Name</label>

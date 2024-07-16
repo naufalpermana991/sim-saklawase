@@ -84,8 +84,9 @@ class MopController extends Controller
      */
     public function create()
     {
+        $projects = Projects::all();
         $plannings = Planning::all();
-        return view('pages.man-of-power.create', compact('plannings'));
+        return view('pages.man-of-power.create', compact('plannings', 'projects'));
     }
 
     /**
@@ -94,6 +95,7 @@ class MopController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            "project_id" => "required|exists:projects,id",
             "planning_id" => "required|exists:plannings,id",
             "start_date" => "required|date",
             "worker_name1" => "nullable",
@@ -114,13 +116,12 @@ class MopController extends Controller
         $input = $request->all();
         $input['planning_id'] = $request->planning_id;
         $input['task_name'] = $taskName;
+        $input['project_id'] = $request->project_id; // Ensure project_id is included
 
         ManofPower::create($input);
 
         return redirect()->route('mop.index', ['activeTab' => 'planning'])->with(['success' => 'Data Berhasil Disimpan!']);
     }
-
-
     /**
      * Display the specified resource.
      */
@@ -128,7 +129,9 @@ class MopController extends Controller
     {
 
         $project = Projects::where('slug', $slug)->first();
-        $mop = ManOfPower::all();
+
+        // Get all planning tasks related to the project
+        $mop = ManOfPower::where('project_id', $project->id)->get();
 
         return view('pages.man-of-power.index', compact('project', 'mop'));
     }

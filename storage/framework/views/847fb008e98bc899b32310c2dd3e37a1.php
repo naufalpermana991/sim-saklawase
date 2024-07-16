@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="wnameth=device-wnameth, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Man of Power Task</title>
     <?php echo $__env->yieldPushContent('prepend-style'); ?>
     <?php echo $__env->make('includes.styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -32,6 +32,17 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="project_id" class="form-label">Project</label>
+                                    <select class="form-control" name="project_id">
+                                        <?php $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($project->id); ?>"><?php echo e($project->project_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col">
                                 <div class="form-group">
                                     <label for="planning_id" class="form-label">Task Name</label>
